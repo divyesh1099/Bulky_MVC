@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33513.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyWeb", "BulkyWeb\BulkyWeb.csproj", "{E6636F5F-7F3D-4A01-AC20-A7ED970E394A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkyWebRazor_Temp", "BulkyWebRazor_Temp\BulkyWebRazor_Temp.csproj", "{A5E89955-5776-4246-87E4-BFBB4B3E8394}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyWebRazor_Temp", "BulkyWebRazor_Temp\BulkyWebRazor_Temp.csproj", "{A5E89955-5776-4246-87E4-BFBB4B3E8394}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
