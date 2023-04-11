@@ -5,12 +5,21 @@
 This is an E-Commerce Web Store For Selling Books. 
 It is Built Using .NET MVC + RazorPages + Bootstrap + Azure Deployment + Firebase DB
 
-### Here are Some Screenshots
+### Here are Some Screenshots (MVC)
+![Screenshot (26)](https://user-images.githubusercontent.com/65925922/231163926-6978d6a6-6e93-48d2-93a0-07b1560d82df.png)
+![Screenshot (25)](https://user-images.githubusercontent.com/65925922/231163935-71438786-370c-4260-88b1-ed24269f442d.png)
+![Screenshot (29)](https://user-images.githubusercontent.com/65925922/231163913-682576e5-0741-47d7-aed8-eeb13d86d0a2.png)
+![Screenshot (28)](https://user-images.githubusercontent.com/65925922/231163919-5e5bb3b8-739a-4a1a-b4d1-193915631400.png)
+![Screenshot (27)](https://user-images.githubusercontent.com/65925922/231163923-935824f8-cfb9-469d-a984-3b5e0d566c2a.png)
+![Screenshot (30)](https://user-images.githubusercontent.com/65925922/231163903-9cb4ca42-3dff-4dbf-a8e2-2cb9f9b2d4c2.png)
+
+These are some Razorpages Example Screenshots
 ![Screenshot (23)](https://user-images.githubusercontent.com/65925922/230773577-584a597b-5e18-44e8-ad4f-7dff394ef20b.png)
 ![Screenshot (22)](https://user-images.githubusercontent.com/65925922/230773582-7a601d12-9815-4c4e-9898-3adff99e3d01.png)
-![Screenshot (20)](https://user-images.githubusercontent.com/65925922/230773583-c7a38761-d7c0-42e4-9ae5-b722b4198641.png)
-![Screenshot (19)](https://user-images.githubusercontent.com/65925922/230773584-5c5c4c27-1dbf-4c6d-8070-646faa61b074.png)
-![Screenshot (18)](https://user-images.githubusercontent.com/65925922/230773587-e246c8cf-8f48-401c-b57f-58649a73be58.png)
-![Screenshot (17)](https://user-images.githubusercontent.com/65925922/230773589-ce6cdc40-a5f3-429f-b982-c16bf62cf2c2.png)
-![Screenshot (16)](https://user-images.githubusercontent.com/65925922/230773590-73c12669-1bf9-45e1-9860-c9b5f048071b.png)
+
+
+
+
+
+
 
