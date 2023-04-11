@@ -20,7 +20,24 @@ namespace Bulky.DataAccess.Repository
        
         public void Update(Product obj)
         {
-            _db.Products.Update(obj);
+            // _db.Products.Update(obj); (Commented this because we needed the custom updation because of null or not null image URL
+            Product? productFromDb = _db.Products.FirstOrDefault(u => u.Id == obj.Id);
+            if(productFromDb != null)
+            {
+                productFromDb.Title = obj.Title;
+                productFromDb.Description = obj.Description;
+                productFromDb.ISBN = obj.ISBN;
+                productFromDb.Author = obj.Author;
+                productFromDb.ListPrice = obj.ListPrice;
+                productFromDb.Price = obj.Price;
+                productFromDb.Price50 = obj.Price50;
+                productFromDb.Price100 = obj.Price100;
+                productFromDb.CategoryId = obj.CategoryId;
+                if(obj.ImageURL != null)
+                {
+                    productFromDb.ImageURL = obj.ImageURL;
+                }
+            }
         }
 
         public void Save()

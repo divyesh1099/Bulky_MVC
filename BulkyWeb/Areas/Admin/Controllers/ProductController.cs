@@ -11,18 +11,20 @@ namespace BulkyWeb.Areas.Admin.Controllers
     {
         private ProductRepository _productRepository;
         private CategoryRepository _categoryRepository;
-        public ProductController(ProductRepository productRepository, CategoryRepository categoryRepository)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductController(ProductRepository productRepository, CategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
-            List<Product> Products = _productRepository.GetAll().ToList();
+            List<Product> Products = _productRepository.GetAll(includeProperties:"Category").ToList();
             
             return View(Products);
         }
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
             IEnumerable<SelectListItem> CategoryList = _categoryRepository.GetAll().Select(u => new SelectListItem
             {
@@ -35,14 +37,50 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 Product = new Product()
 
             };
-            return View(productVM);
+            if(id==null || id == 0){
+                return View(productVM);
+
+            }
+            else
+            {
+                productVM.Product = _productRepository.Get(u => u.Id == id);
+                return View(productVM);
+            }
         }
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
-                _productRepository.Add(productVM.Product);
+                string wwwrootpath = _webHostEnvironment.WebRootPath;
+                if(file != null)
+                {
+                    string filename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string productPath = Path.Combine(wwwrootpath, @"images\product");
+
+                    if (!string.IsNullOrEmpty(productVM.Product.ImageURL))
+                    {
+                        // Delete Old Image
+                        var oldImagePath = Path.Combine(wwwrootpath, productVM.Product.ImageURL.TrimStart('\\'));
+                        if(System.IO.File.Exists(oldImagePath)) 
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    using (var fileStream = new FileStream(Path.Combine(productPath, filename), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    productVM.Product.ImageURL = @"\images\product\" + filename;
+                }
+                if(productVM.Product.Id == 0)
+                {
+                    _productRepository.Add(productVM.Product);
+                } else
+                {
+                    _productRepository.Update(productVM.Product);
+                }
                 _productRepository.Save();
                 TempData["success"] = "Congratulations your Product was created successfully";
                 return RedirectToAction("Index", "Product");
@@ -50,55 +88,34 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult Edit(int? id)
+        
+        #region API Calls
+        [HttpGet]
+        public IActionResult GetAll() 
         {
-            if(id != null && id != 0)
-            {
-                Product Product = _productRepository.Get(u=>u.Id == id);
-                return View(Product);
-            }
-            return NotFound();
+            List<Product> Products = _productRepository.GetAll(includeProperties: "Category").ToList();
+            return Json(new { data = Products });
         }
-
-        [HttpPost]
-        public IActionResult Edit(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _productRepository.Update(product);
-                _productRepository.Save();
-                TempData["success"] = "Congratulations, Your Product was Edited Successfully";
-                return RedirectToAction("Index", "Product");
-            }
-            return View();
-        }
-
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if(id != null && id != 0)
+            Product? productToDelete = _productRepository.Get(u => u.Id == id);
+            if(productToDelete == null)
             {
-                Product Product = _productRepository.Get(u => u.Id == id);
-                return View(Product);
+                return Json(new { success = false, message = "Error While Deleting" });
             }
-            return NotFound();
-        }
 
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(int? id)
-        {
-            if(id != null && id != 0)
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToDelete.ImageURL.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
             {
-                Product? productFromDb = _productRepository.Get(u => u.Id == id);
-                if(productFromDb != null)
-                {
-                    _productRepository.Remove(productFromDb);
-                    _productRepository.Save();
-                    TempData["success"] = "Congratulations, the product was Deleted Successfully";
-                    return RedirectToAction("Index", "Product");
-
-                }
+                System.IO.File.Delete(oldImagePath);
             }
-            return NotFound();
+            _productRepository.Remove(productToDelete);
+            _productRepository.Save();
+
+            List<Product> Products = _productRepository.GetAll(includeProperties: "Category").ToList();
+            return Json(new { success = true, message = "Deleted Successful" });
         }
+        #endregion
     }
 }
