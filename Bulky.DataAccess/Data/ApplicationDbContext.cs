@@ -1,9 +1,11 @@
 ﻿using Bulky.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bulky.DataAccess.Data
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {
@@ -11,9 +13,12 @@ namespace Bulky.DataAccess.Data
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
                 new Category { Id = 2, Name = "Sci-fi", DisplayOrder = 2 },
@@ -104,6 +109,25 @@ namespace Bulky.DataAccess.Data
                     CategoryId = 2,
                     ImageURL = ""
                 });
+            modelBuilder.Entity<Company>().HasData(
+                new Company {
+                    Id= 1,
+                    Name="Zeus", 
+                    PhoneNumber="9988776655"
+                }, 
+                new Company
+                {
+                    Id=2,
+                    Name = "Infosys",
+                    PhoneNumber = "9998887776"
+                },
+                new Company
+                {
+                    Id=3,
+                    Name = "Kelp",
+                    PhoneNumber = "9999888877"
+                }
+                );
         }
     }
 }

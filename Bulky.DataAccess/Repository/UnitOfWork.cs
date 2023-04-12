@@ -15,6 +15,8 @@ namespace Bulky.DataAccess.Repository
 
         public ProductRepository Product { get; set; }
 
+        public CompanyRepository Company { get; set; }
+
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
