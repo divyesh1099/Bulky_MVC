@@ -13,6 +13,8 @@ namespace BulkyWeb.Areas.Customer.Controllers
     [Area("Customer")]
     public class HomeController : Controller
     {
+        [BindProperty]
+        public ShoppingCart ShoppingCart { get; set; }
         private readonly ApplicationDbContext _db;
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
@@ -38,13 +40,13 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult Details(int id)
         {
-            ShoppingCart ShoppingCart = new() 
-            {
-                Product = _productRepository.Get(u=>u.Id == id, includeProperties: "Category"),
-                Count = 1,
-                ProductId = id
-            };
-
+			var claimsIdentity = (ClaimsIdentity)User.Identity;
+			var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            ShoppingCart = new ShoppingCart();
+            ShoppingCart.Product = _productRepository.Get(u => u.Id == id, includeProperties: "Category");
+            ShoppingCart.Count = 1;
+            ShoppingCart.ProductId = id;
+            ShoppingCart.ApplicationUserId = userId;
             return View(ShoppingCart);
         }
 
@@ -54,7 +56,8 @@ namespace BulkyWeb.Areas.Customer.Controllers
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
-            shoppingCart.ApplicationUserId = userId;
+            // shoppingCart.ApplicationUserId = userId;
+
             ShoppingCart shoppingCartFromDb = _shoppingCartRepository.Get(u=>u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
             if (shoppingCartFromDb != null)
             {
