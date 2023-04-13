@@ -26,16 +26,6 @@ namespace Bulky.DataAccess.Repository
         {
             _db.SaveChanges();
         }
-        public void SaveNewShoppingCart(ShoppingCart shoppingCart)
-        {
-            _db.Database.OpenConnection();
-            _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.ShoppingCarts ON");
-            _db.ShoppingCarts.Add(shoppingCart);
-            _db.SaveChanges();
-            _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.ShoppingCarts OFF");
-            _db.Database.CloseConnection();
-
-        }
     }
 }
 

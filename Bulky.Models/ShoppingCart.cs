@@ -13,19 +13,22 @@ namespace Bulky.Models
     public class ShoppingCart
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int? ProductId { get; set; }
 
         [ForeignKey("ProductId")]
         [ValidateNever]
         public Product Product { get; set; }
         [Range(1, 1000, ErrorMessage = "Please enter a value between 1 and 1000")]
         public int Count { get; set; }
-
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string IdentityUserId { get; set; }
+        public string ApplicationUserId { get; set; }
 
-        [ForeignKey("IdentityUserId")]
+        [ForeignKey("ApplicationUserId")]
         [ValidateNever]
-        public IdentityUser IdentityUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+
+        [NotMapped]
+        public double Price { get; set; }
     }
 }
