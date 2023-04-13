@@ -1,4 +1,5 @@
 ﻿using Bulky.DataAccess.Repository;
+using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Authorization;
@@ -12,8 +13,8 @@ namespace BulkyWeb.Areas.Admin.Controllers
     [Authorize(Roles = SD.Role_Admin)]
     public class CompanyController : Controller
     {
-        private readonly CompanyRepository _companyRepository;
-        public CompanyController(CompanyRepository companyRepository)
+        private readonly ICompanyRepository _companyRepository;
+        public CompanyController(ICompanyRepository companyRepository)
         {
             _companyRepository = companyRepository;
         }
@@ -56,6 +57,10 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 {
                     Company companyfromDb = _companyRepository.Get(u => u.Id == obj.Id);
                     companyfromDb.Name = obj.Name;
+                    companyfromDb.StreetAddress = obj.StreetAddress;
+                    companyfromDb.City = obj.City;
+                    companyfromDb.State = obj.State;
+                    companyfromDb.PostalCode = obj.PostalCode;
                     companyfromDb.PhoneNumber = obj.PhoneNumber;
                     TempData["success"] = "Congratulations, New Company was Created Successfully";
                 }

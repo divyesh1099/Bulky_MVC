@@ -14,6 +14,7 @@ namespace Bulky.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -113,18 +114,30 @@ namespace Bulky.DataAccess.Data
                 new Company {
                     Id= 1,
                     Name="Zeus", 
+                    StreetAddress="SS1, Sector-15, Room No 561, Koparkhairane",
+                    City="Navi Mumbai",
+                    State="Maharashtra",
+                    PostalCode="400709",
                     PhoneNumber="9988776655"
                 }, 
                 new Company
                 {
                     Id=2,
                     Name = "Infosys",
+                    StreetAddress = "SS1, Sector-15, Room No 561, Koparkhairane",
+                    City = "Navi Mumbai",
+                    State = "Maharashtra",
+                    PostalCode = "400709",
                     PhoneNumber = "9998887776"
                 },
                 new Company
                 {
                     Id=3,
                     Name = "Kelp",
+                    StreetAddress = "SS1, Sector-15, Room No 561, Koparkhairane",
+                    City = "Navi Mumbai",
+                    State = "Maharashtra",
+                    PostalCode = "400709",
                     PhoneNumber = "9999888877"
                 }
                 );

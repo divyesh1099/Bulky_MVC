@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository.IRepository
 {
-    internal interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         // T = Category or Any other Model 
         IEnumerable<T> GetAll(string? includeProperties = null);

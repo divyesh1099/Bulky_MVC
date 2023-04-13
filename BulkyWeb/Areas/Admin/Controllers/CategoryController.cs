@@ -12,8 +12,8 @@ namespace BulkyWeb.Areas.Admin.Controllers
     [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
-        private readonly CategoryRepository _categoryRepository;
-        public CategoryController(CategoryRepository categoryRepository)
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryController(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }

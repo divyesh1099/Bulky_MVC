@@ -10,8 +10,8 @@
     </div>
     <div class="card-body py-4">
         <form method="post" class="row" enctype="multipart/form-data">
-            <input type="text" disabled hidden asp-for="Product.Id" />
-            <input type="text" disabled hidden asp-for="Product.ImageURL" />
+            <input asp-for="Product.Id" hidden />
+            <input asp-for="Product.ImageURL" hidden />
             <div class="row">
                 <div class="col-10">
                     <div class="border p-3">

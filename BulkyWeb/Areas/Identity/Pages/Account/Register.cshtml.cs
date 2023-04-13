@@ -109,12 +109,12 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
 
-            //[Required]
-            //public string Name { get; set; }
-            //public string? StreetName { get; set; }
-            //public string? City { get; set; }
-            //public string? State { get; set; }
-            //public string? PostalCode { get; set; }
+            [Required]
+            public string Name { get; set; }
+            public string? StreetName { get; set; }
+            public string? City { get; set; }
+            public string? State { get; set; }
+            public string? PostalCode { get; set; }
             public string? PhoneNumber { get; set; }
         }
 
@@ -151,18 +151,18 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                //user.Name = Input.Name;
-                //user.StreetName = Input.StreetName;
-                //user.City = Input.City;
+                user.Name = Input.Name;
+                user.StreetName = Input.StreetName;
+                user.City = Input.City;
                 user.PhoneNumber = Input.PhoneNumber;
-                //user.State = Input.State;
-                //user.PostalCode = Input.PostalCode;
+                user.State = Input.State;
+                user.PostalCode = Input.PostalCode;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-                    if (!string.IsNullOrEmpty(Input.Role))
+                    if (!String.IsNullOrEmpty(Input.Role))
                     {
                         await _userManager.AddToRoleAsync(user, Input.Role);
                     } else
@@ -202,11 +202,11 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {

@@ -7,8 +7,12 @@ function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         'ajax': { url: '/Admin/Company/GetAll' },
         'columns': [
-            { data: 'name', 'width': '40%' },
-            { data: 'phoneNumber', 'width': '33%' },
+            { data: 'name', 'width': '11%' },
+            { data: 'streetAddress', 'width': '11%' },
+            { data: 'city', 'width': '11%' },
+            { data: 'state', 'width': '11%' },
+            { data: 'postalCode', 'width': '11%' },
+            { data: 'phoneNumber', 'width': '11%' },
             {
                 data: 'id',
                 'render': function (data) {
@@ -23,7 +27,7 @@ function loadDataTable() {
                     </div>
                     `
                 },
-                'width': '23%'
+                'width': '34%'
             },
 
         ]

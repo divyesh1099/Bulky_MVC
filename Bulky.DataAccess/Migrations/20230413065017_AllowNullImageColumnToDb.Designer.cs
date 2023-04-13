@@ -4,6 +4,7 @@ using Bulky.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230413065017_AllowNullImageColumnToDb")]
+    partial class AllowNullImageColumnToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,23 +74,11 @@ namespace Bulky.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -98,32 +89,20 @@ namespace Bulky.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            City = "Navi Mumbai",
                             Name = "Zeus",
-                            PhoneNumber = "9988776655",
-                            PostalCode = "400709",
-                            State = "Maharashtra",
-                            StreetAddress = "SS1, Sector-15, Room No 561, Koparkhairane"
+                            PhoneNumber = "9988776655"
                         },
                         new
                         {
                             Id = 2,
-                            City = "Navi Mumbai",
                             Name = "Infosys",
-                            PhoneNumber = "9998887776",
-                            PostalCode = "400709",
-                            State = "Maharashtra",
-                            StreetAddress = "SS1, Sector-15, Room No 561, Koparkhairane"
+                            PhoneNumber = "9998887776"
                         },
                         new
                         {
                             Id = 3,
-                            City = "Navi Mumbai",
                             Name = "Kelp",
-                            PhoneNumber = "9999888877",
-                            PostalCode = "400709",
-                            State = "Maharashtra",
-                            StreetAddress = "SS1, Sector-15, Room No 561, Koparkhairane"
+                            PhoneNumber = "9999888877"
                         });
                 });
 

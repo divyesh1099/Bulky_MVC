@@ -6,6 +6,7 @@ using Bulky.Models.ViewModels;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using Bulky.DataAccess.Repository.IRepository;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
@@ -13,10 +14,10 @@ namespace BulkyWeb.Areas.Admin.Controllers
     [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
-        private ProductRepository _productRepository;
-        private CategoryRepository _categoryRepository;
+        private IProductRepository _productRepository;
+        private ICategoryRepository _categoryRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public ProductController(ProductRepository productRepository, CategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
+        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
@@ -108,11 +109,13 @@ namespace BulkyWeb.Areas.Admin.Controllers
             {
                 return Json(new { success = false, message = "Error While Deleting" });
             }
-
-            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToDelete.ImageURL.TrimStart('\\'));
-            if (System.IO.File.Exists(oldImagePath))
+            if(productToDelete.ImageURL != null)
             {
-                System.IO.File.Delete(oldImagePath);
+                var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToDelete.ImageURL.TrimStart('\\'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
             }
             _productRepository.Remove(productToDelete);
             _productRepository.Save();
