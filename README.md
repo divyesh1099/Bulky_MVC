@@ -14,6 +14,8 @@ It is Built Using .NET MVC + RazorPages + Bootstrap + Azure Deployment + Firebas
 ![Screenshot (30)](https://user-images.githubusercontent.com/65925922/231163903-9cb4ca42-3dff-4dbf-a8e2-2cb9f9b2d4c2.png)
 ![Screenshot (46)](https://user-images.githubusercontent.com/65925922/231889494-f5ae3407-a466-4102-ba66-02075b7afadd.png)
 ![Screenshot (47)](https://user-images.githubusercontent.com/65925922/231889491-678cad17-7d97-4790-a29b-f9f4603b34e3.png)
+![Screenshot (50)](https://user-images.githubusercontent.com/65925922/232075793-91b0471d-1330-4c6f-bf1f-adfe6402d077.png)
+![Screenshot (51)](https://user-images.githubusercontent.com/65925922/232075781-7c0e8df1-de9e-4f4a-94d8-bf210c5492fa.png)
 ![Screenshot (48)](https://user-images.githubusercontent.com/65925922/231889483-5a929a0e-bbbf-4e44-9fd9-e3af792cec67.png)
 ![Screenshot (44)](https://user-images.githubusercontent.com/65925922/231455538-6c5846d9-819c-4899-9342-14741478adc6.png)
 ![Screenshot (43)](https://user-images.githubusercontent.com/65925922/231455545-d71e7f7f-0c2d-43c5-bb6e-402c217db316.png)
