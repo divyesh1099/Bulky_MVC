@@ -5,6 +5,17 @@
 This is an E-Commerce Web Store For Selling Books. 
 It is Built Using .NET MVC + RazorPages + Bootstrap + Azure Deployment + Firebase DB
 
+### Here are some video overviews of several processes
+1. Code Overview
+https://user-images.githubusercontent.com/65925922/232099658-439cb8c0-184f-49a8-a3eb-2b6f01e3c320.mp4
+
+2. Register User
+https://user-images.githubusercontent.com/65925922/232100006-ddd6d8d9-951b-42e2-8031-73606b2e3202.mp4
+
+3. Product CRUD
+https://user-images.githubusercontent.com/65925922/232100173-ea360fda-0efe-40fb-9a60-74ea3e1859ef.mp4
+
+
 ### Here are Some Screenshots (MVC)
 ![Screenshot (32)](https://user-images.githubusercontent.com/65925922/231455554-0de1696e-b6c8-4acd-b515-e15463009783.png)
 ![Screenshot (25)](https://user-images.githubusercontent.com/65925922/231163935-71438786-370c-4260-88b1-ed24269f442d.png)
