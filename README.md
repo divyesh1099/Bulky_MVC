@@ -5,6 +5,36 @@
 This is an E-Commerce Web Store For Selling Books. 
 It is Built Using .NET MVC + RazorPages + Bootstrap + Azure Deployment + Firebase DB
 
+## Topics Covered
+1. MVC Architecture
+2. EF Core
+3. Routing
+4. CRUD
+5. Data Annotation
+6. Bootstrap and Bootswatch
+7. Validations (Server side, Custom, ASP and Client side)
+8. TempData
+9. Partial View
+10. Toastr Notification
+11. Razor Project
+12. N-Tier Architecture
+13. Dependency Injection Service Lifetimes
+14. Repository Pattern 
+15. Unit of Work
+16. Areas in .NET
+17. ViewBag, ViewData and ViewModels
+18. Image Management
+19. Navigation Properties
+20. SweetAlerts
+21. Identity 
+22. Stripe Payments
+23. Authentication and Authorization
+24. Sessions
+25. Caching
+26. Social Login(Facebool and Google SSO)
+27. Azure Deployment
+28. Lock Unlock
+
 ### Here are some video overviews of several processes
 
 1. Code Overview
@@ -30,9 +60,6 @@ https://user-images.githubusercontent.com/65925922/232279261-69bd55a4-69b2-4171-
 6. Place Order
 
 https://user-images.githubusercontent.com/65925922/232279358-3f21a383-8e14-4455-94dd-f279ef7f4d8a.mp4
-
-
-
 
 ### Here are Some Screenshots (MVC)
 ![Screenshot (32)](https://user-images.githubusercontent.com/65925922/231455554-0de1696e-b6c8-4acd-b515-e15463009783.png)
